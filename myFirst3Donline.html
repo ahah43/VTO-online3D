@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <title>Viewstl Javascript Plugin - Camera State Example</title>
+    </head>
+
+    <body>
+        <div id="stl_cont" style="width:1500px;height:800px;margin:0 auto;"></div>
+
+        <script src="stl_viewer.min.js"></script>        
+        <script>
+            var stl_viewer=new StlViewer
+            (
+                document.getElementById("stl_cont"),
+                {
+                    models:
+                    [
+                        {filename:"GA2.stl"}
+                    ]
+                }
+            );
+        </script>
+    </body>
+</html>
