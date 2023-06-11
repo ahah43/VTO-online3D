@@ -32,6 +32,19 @@
         }
         var ua = parseUA();
 
+
+        // const stl_cont = document.querySelector("#stl_cont");
+        // function updateSize(ua) {
+        //     if (ua.mobile) {
+        //         stl_cont.style = "width:" + screen.height + "px;height:" + screen.width + "px;margin:0 auto;";
+        //     } else {
+        //         stl_cont.style = "width:" + screen.width + "px;height:" + screen.height + "px;margin:0 auto;";
+        //     }
+        //     // stl_cont.style.height = window.screen.height;
+        //     // alert(stl_cont.style)
+        // }
+        // updateSize();
+
         if (ua.mobile) {
             location.href = './pc.html';
         }
@@ -46,20 +59,36 @@
                 stl_viewer.set_opacity(model_id, 1)
             } else {
                 stl_viewer.set_color(model_id, "#909090")
-                stl_viewer.set_opacity(model_id,0.5)
+                stl_viewer.set_opacity(model_id, 0.5)
             }
         }
     </script>
-    
-    <script>
+
+    <!-- <script>
         const stl_cont = document.querySelector("#stl_cont");
         function updateSize() {
-            stl_cont.style = "width:"+window.screen.availWidth + "px;height:"+window.screen.availHeight+"px;margin:0 auto;";
+            stl_cont.style = "width:" + screen.width + "px;height:" + screen.height + "px;margin:0 auto;";
             // stl_cont.style.height = window.screen.height;
             // alert(stl_cont.style)
         }
         updateSize();
-    </script>
+    </script> -->
+
+
+    <!-- <script>
+        var elem = document.getElementById("stl_cont");
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        }
+        openFullscreen();
+    </script> -->
+
 
     <script src="stl_viewer.min.js"></script>
     <script>
@@ -70,7 +99,7 @@
                     on_model_mouseclick: our_model_click,
                     models:
                         [
-                            { filename: "GA.stl", opacity: 0.5, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display:"smooth" },
+                            { filename: "GA.stl", opacity: 0.5, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth" },
                             // {filename:"GAler/GA_1_CONSERVATOR BODY_416.stl", x:0, y:0, z:200}
                         ]
                 }
