@@ -8,9 +8,27 @@
 </head>
 
 <body>
+
+    <!-- <label>Full Transformer:</label>&nbsp; &nbsp; -->
+    <form name="myForm">
+        <label>Please Select a Model to Present</label><br>
+       <input type="radio" name="myRadios" id="0"/><label>Full Transformer (Time Consuming)</label><br>
+        <input type="radio" name="myRadios" id="1" /><label>CCA</label><br>
+        <input type="radio" name="myRadios" id="2" /><label>LV Cablebox</label><br>
+        <input type="radio" name="myRadios" id="3" /><label>HV Cablebox</label><br>
+    </form>
+
     <div id="stl_cont" style="width:1500px;height:800px;margin:0 auto;"></div>
 
+
+
+
+
+
     <script>
+        models = ["models/GA.stl",  "models/CCA.stl", "models/LV_cableBox.stl", "models/HV_cableBox.stl"];
+
+
         function parseUA() {
             var u = navigator.userAgent;
             var u2 = navigator.userAgent.toLowerCase();
@@ -54,27 +72,57 @@
 
     <script>
         function our_model_click(model_id, e, distance, click_type) {
-            if (click_type == 1) {
-                stl_viewer.set_color(model_id, "#00FFFF")
-                stl_viewer.set_opacity(model_id, 1)
-            } else {
-                stl_viewer.set_color(model_id, "#909090")
-                stl_viewer.set_opacity(model_id, 0.5)
-            }
+            // if (click_type == 1) {
+            //     stl_viewer.set_color(model_id, "#00FFFF")
+            //     stl_viewer.set_opacity(model_id, 1)
+            // } else {
+            //     stl_viewer.set_color(model_id, "#909090")
+            //     stl_viewer.set_opacity(model_id, 0.5)
+            // }
         }
+
+
+        var rad = document.myForm.myRadios;
+        var prev = null;
+        for (var mm = 0; mm < rad.length; mm++) {
+            rad[mm].addEventListener('change', function () {
+                valueChanged()
+            });
+        }
+
+
+
     </script>
 
     <script>
         const stl_cont = document.querySelector("#stl_cont");
         function updateSize() {
-            stl_cont.style = "width:" + screen.width + "px;height:" + screen.height + "px;margin:0 auto;";
+            stl_cont.style = "width:" + screen.width*0.8 + "px;height:" + screen.height*0.8 + "px;margin:0 auto;";
             // stl_cont.style.height = window.screen.height;
             // alert(stl_cont.style)
         }
         updateSize();
     </script>
 
-
+    <script>
+        function valueChanged() {
+            stl_viewer.clean();
+            choices = document.myForm.myRadios;
+            // alert(choices)
+            for (var i = 0; i < choices.length; i++) {
+                // console.log(i)
+                // console.log(choices[i].checked)
+                if (choices[i].checked) {
+                    stl_viewer.add_model({id:1, filename:models[i], opacity: 0.6, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "flat"});
+                    // stl_viewer.set_opacity(i, 0.6)
+                    // stl_viewer.set_color(i, "#909090")
+                } else {
+                    // stl_viewer.set_opacity(i, 0)
+                    // stl_viewer.set_color(i, "#909090")
+                }
+            }
+        }
+    </script>
     <!-- <script>
         var elem = document.getElementById("stl_cont");
         function openFullscreen() {
@@ -99,8 +147,11 @@
                     on_model_mouseclick: our_model_click,
                     models:
                         [
-                            { filename: "GA.stl", opacity: 0.5, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth" },
-                            // {filename:"GAler/GA_1_CONSERVATOR BODY_416.stl", x:0, y:0, z:200}
+                            // { filename: "models/GA.stl", opacity: 0.5, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth" },
+                            // { filename: "models/GA.stl", opacity: 0.6, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth", id: 0 },
+                            // { filename: "models/CCA.stl", opacity: 0, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth", id: 1 },
+                            // { filename: "models/LV_cableBox.stl", opacity: 0, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth", id: 2 },
+                            { filename: "models/HV_cableBox.stl", opacity: 0, rotationx: -3 / 4 * Math.PI / 2, rotationy: -0 / 4 * Math.PI / 2, rotationz: 1 / 2 * Math.PI / 2, display: "smooth", id: 3 },
                         ]
                 }
             );
