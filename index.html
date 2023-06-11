@@ -50,6 +50,16 @@
             }
         }
     </script>
+    
+    <script>
+        const stl_cont = document.querySelector("#stl_cont");
+        function updateSize() {
+            stl_cont.style = "width:"+window.screen.availWidth + "px;height:"+window.screen.availHeight+"px;margin:0 auto;";
+            // stl_cont.style.height = window.screen.height;
+            // alert(stl_cont.style)
+        }
+        updateSize();
+    </script>
 
     <script src="stl_viewer.min.js"></script>
     <script>
